@@ -7,7 +7,8 @@ var cors_proxy = require('cors-anywhere');
 cors_proxy.createServer({
     originWhitelist: [], // Allow all origins
     // requireHeader: [ 'x-requested-with'],
-    removeHeaders: ['origin','cookie', 'cookie2']
+    removeHeaders: ['origin','cookie', 'cookie2'],
+    corsMaxAge:36000 // to supress options request by directing browser to cache response for this much time 
 }).listen(port, host, function() {
     console.log('Running CORS Anywhere on ' + host + ':' + port);
 });
