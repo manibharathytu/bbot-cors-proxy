@@ -7,8 +7,8 @@ var port = process.env.PORT || 8080;
 
 var cors_proxy = require('cors-anywhere');
 httpsOptions = options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/www.bbot.ml/fullchain.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/www.bbot.ml/privkey.pem')
+    key: fs.readFileSync('/etc/letsencrypt/live/www.bbot.ml/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/www.bbot.ml/fullchain.pem')
 };
 cors_proxy.createServer({
     originWhitelist: [], // Allow all origins
