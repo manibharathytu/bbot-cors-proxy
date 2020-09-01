@@ -4,11 +4,16 @@ var host = process.env.HOST || '0.0.0.0';
 var port = process.env.PORT || 8080;
 
 var cors_proxy = require('cors-anywhere');
+httpsOptions = options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/www.bbot.ml/fullchain.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/www.bbot.ml/privkey.pem')
+};
 cors_proxy.createServer({
     originWhitelist: [], // Allow all origins
     // requireHeader: [ 'x-requested-with'],
-    removeHeaders: ['origin','cookie', 'cookie2'],
-    corsMaxAge:36000 // to supress options request by directing browser to cache response for this much time 
-}).listen(port, host, function() {
+    removeHeaders: ['origin', 'cookie', 'cookie2'],
+    corsMaxAge: 36000, // to supress options request by directing browser to cache response for this much time 
+    httpsOptions: httpsOptions
+}).listen(port, host, function () {
     console.log('Running CORS Anywhere on ' + host + ':' + port);
 });
